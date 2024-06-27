@@ -5,6 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+	<style>
+			/* Custom button styles */
+			#start-button {
+			  position: relative;
+			  height: 50px;
+			  padding: 0 30px;
+			  border: 2px solid #000;
+			  background: #e8e8e8;
+			  color: #000; /* Ensure the text color is visible */
+			  user-select: none;
+			  white-space: nowrap;
+			  transition: all 0.05s linear;
+			  font-family: inherit;
+			}
+	
+			#start-button:before, #start-button:after {
+			  content: "";
+			  position: absolute;
+			  background: #e8e8e8;
+			  transition: all 0.2s linear;
+			}
+	
+			#start-button:before {
+			  width: calc(100% + 6px);
+			  height: calc(100% - 16px);
+			  top: 8px;
+			  left: -3px;
+			}
+	
+			#start-button:after {
+			  width: calc(100% - 16px);
+			  height: calc(100% + 6px);
+			  top: -3px;
+			  left: 8px;
+			}
+	
+			#start-button:hover {
+			  cursor: pointer;
+			}
+	
+			#start-button:active {
+			  transform: scale(0.95);
+			}
+	
+			#start-button:hover:before {
+			  height: calc(100% - 32px);
+			  top: 16px;
+			}
+	
+			#start-button:hover:after {
+			  width: calc(100% - 32px);
+			  left: 16px;
+			}
+	
+			#start-button span {
+			  font-size: 15px;
+			  z-index: 3;
+			  position: relative;
+			  font-weight: 600;
+			}
+		  
+	</style>
+	{% block headthings %}
+	
+	{% endblock headthings %}
 
 </head>
 <body>
