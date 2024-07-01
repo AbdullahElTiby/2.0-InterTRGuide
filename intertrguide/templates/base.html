@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+	<link rel="icon" href="{% static 'app/icon png.png' %}" type="image/x-icon">
 	<style>
 			/* Custom button styles */
 			#start-button {
@@ -79,11 +81,9 @@
 		<!-- Logo -->
 		<div class="text-red-500 md:order-1">
 			<!-- Heroicon - Chip Outline -->
-			<svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24"
-				stroke="currentColor">
-				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-					d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
-			</svg>
+			<img src="{% static 'app/icon png.png' %}" class="h-10 w-10">
+			
+			
 		</div>
 		<div class="text-gray-500 order-3 w-full md:w-auto md:order-2">
 			<ul class="flex font-semibold justify-between">
@@ -185,13 +185,11 @@
 	<div class="bg-gray-100">
 	  <div class="container px-5 py-6 mx-auto flex items-center sm:flex-row flex-col">
 		<a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-		  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-red-500 rounded-full" viewBox="0 0 24 24">
-			<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-		  </svg>
-		  <span class="ml-3 text-xl">Tailblocks</span>
+			<img src="{% static 'app/icon png.png' %}" class="h-10 w-10">
+		  <span class="ml-3 text-xl">InterTRGuide</span>
 		</a>
-		<p class="text-sm text-gray-500 sm:ml-6 sm:mt-0 mt-4">© 2020 Tailblocks —
-		  <a href="https://twitter.com/knyttneve" rel="noopener noreferrer" class="text-gray-600 ml-1" target="_blank">@knyttneve</a>
+		<p class="text-sm text-gray-500 sm:ml-6 sm:mt-0 mt-4">© 2024 InterTRGuide —
+		  <a href="https://twitter.com/abdullah_eltiby" rel="noopener noreferrer" class="text-gray-600 ml-1" target="_blank">@Abdullah ElTiby</a>
 		</p>
 		<span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
 		  <a class="text-gray-500">
