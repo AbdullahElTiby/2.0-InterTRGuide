@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{% block pagetitle %}{% endblock pagetitle %} | InterTRGuide</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 	<link rel="icon" href="{% static 'app/icon png.png' %}" type="image/x-icon">
 	<style>
@@ -90,11 +90,11 @@
 			<ul class="flex font-semibold justify-between">
                 <!-- Active Link = text-red-500
                 Inactive Link = hover:text-red-500 -->
-				<li class="md:px-4 md:py-2 text-red-500"><a href="#">Dashboard</a></li>
-				<li class="md:px-4 md:py-2 hover:text-red-400"><a href="#">Search</a></li>
-				<li class="md:px-4 md:py-2 hover:text-red-400"><a href="#">Explore</a></li>
-				<li class="md:px-4 md:py-2 hover:text-red-400"><a href="#">About</a></li>
-				<li class="md:px-4 md:py-2 hover:text-red-400"><a href="#">Contact</a></li>
+				<li class="md:px-4 md:py-2 {% block isactive %}{% endblock %} hover:text-red-400"><a href="{% url "home" %}">Home</a></li>
+				<li class="md:px-4 md:py-2 {% block isactivee %}{% endblock %} hover:text-red-400"><a href="{% url "aitg" %}">AI Tour guide</a></li>
+				<li class="md:px-4 md:py-2 {% block isactiveee %}{% endblock %} hover:text-red-400"><a href="{% url "pricing" %}">Pricing</a></li>
+				<li class="md:px-4 md:py-2 {% block isactiveeee %}{% endblock %} hover:text-red-400"><a href="{% url "about" %}">About</a></li>
+				<li class="md:px-4 md:py-2 {% block isactiveeeee %}{% endblock %} hover:text-red-400"><a href="{% url "contact" %}">Contact</a></li>
 			</ul>
 		</div>
 		<div class="order-2 md:order-3">
