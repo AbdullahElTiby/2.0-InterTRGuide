@@ -19,3 +19,11 @@ def about(request):
 def contact(request):
 
     return render(request, 'contact.html')
+
+def signup(request):
+
+    return render(request, 'signup.html')
+
+def login(request):
+
+    return render(request, 'login.html')
