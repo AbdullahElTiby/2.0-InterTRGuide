@@ -1,4 +1,11 @@
-from django.shortcuts import render
+from django.contrib.auth import authenticate, login as login_user
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .models import User
+from django.contrib.auth import logout
+
+
+
 
 # Create your views here.
 
@@ -20,10 +27,69 @@ def contact(request):
 
     return render(request, 'contact.html')
 
+
 def signup(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_password')
+
+        if not all([username, name, email, password, confirm_password]):
+            messages.error(request, 'Please fill in all fields.')
+            return redirect('signup')
+
+        if User.objects.filter(email=email).exists():
+            messages.error(request, 'Email is already taken.')
+            return redirect('signup')
+        
+        if User.objects.filter(username=username).exists():
+            messages.error(request, 'Username is already taken.')
+            return redirect('signup')
+
+        if password != confirm_password:
+            messages.error(request, 'Passwords do not match.')
+            return redirect('signup')
+
+        user = User.objects.create_user(username=username, email=email, password=password, name=name)
+
+        login_user(request, user)
+
+        return redirect('home')
 
     return render(request, 'signup.html')
+        
 
 def login(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
 
+        if not email or not password:
+            messages.error(request, 'Please provide both email and password.')
+            return redirect('login')
+
+        # Authenticate using email and password
+        user = authenticate(request, email=email, password=password)
+        if user is not None:
+            login_user(request, user)
+            return redirect('home')  # Redirect to home or any desired page after login
+        else:
+            messages.error(request, 'Invalid email or password.')
+            return redirect('login')  # Redirect back to login page with error message
+    
+    # Render the login form initially
     return render(request, 'login.html')
+
+
+def logout_view(request):
+    logout(request)
+    messages.success(request, "You have been logged out.")
+    return redirect('login')
+
+
+
+
+
+
