@@ -43,9 +43,11 @@ def signup(request):
             return redirect('signup')
 
         user = CustomUser.objects.create_user(username=username, email=email, password=password, name=name)
+        messages.success(request, "Your account has been created. You can now login.")
+        
 
-        login_user(request, user)
-        return redirect('home')
+        # login_user(request, user)
+        # return redirect('home')
 
     return render(request, 'signup.html')
 
