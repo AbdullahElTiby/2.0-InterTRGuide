@@ -74,3 +74,6 @@ def logout_view(request):
     logout_user(request)
     messages.success(request, "You have been logged out.")
     return redirect('login')
+
+def settings(request):
+    return render(request, 'settings_page.html')
