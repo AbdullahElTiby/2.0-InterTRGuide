@@ -1,32 +1,22 @@
-from django.contrib.auth import authenticate, login as login_user
+from django.contrib.auth import authenticate, login as login_user, logout as logout_user
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import User
-from django.contrib.auth import logout
-
-
-
-
-# Create your views here.
+from .models import CustomUser
 
 def home(request):
-
     return render(request, 'index.html')
+
 def aitg(request):
-
     return render(request, 'aitg.html')
-def pricing(request):
 
+def pricing(request):
     return render(request, 'pricing.html')
 
 def about(request):
-
     return render(request, 'about.html')
 
 def contact(request):
-
     return render(request, 'contact.html')
-
 
 def signup(request):
     if request.method == 'POST':
@@ -40,11 +30,11 @@ def signup(request):
             messages.error(request, 'Please fill in all fields.')
             return redirect('signup')
 
-        if User.objects.filter(email=email).exists():
+        if CustomUser.objects.filter(email=email).exists():
             messages.error(request, 'Email is already taken.')
             return redirect('signup')
         
-        if User.objects.filter(username=username).exists():
+        if CustomUser.objects.filter(username=username).exists():
             messages.error(request, 'Username is already taken.')
             return redirect('signup')
 
@@ -52,14 +42,12 @@ def signup(request):
             messages.error(request, 'Passwords do not match.')
             return redirect('signup')
 
-        user = User.objects.create_user(username=username, email=email, password=password, name=name)
+        user = CustomUser.objects.create_user(username=username, email=email, password=password, name=name)
 
         login_user(request, user)
-
         return redirect('home')
 
     return render(request, 'signup.html')
-        
 
 def login(request):
     if request.method == 'POST':
@@ -70,26 +58,17 @@ def login(request):
             messages.error(request, 'Please provide both email and password.')
             return redirect('login')
 
-        # Authenticate using email and password
-        user = authenticate(request, email=email, password=password)
+        user = authenticate(request, username=email, password=password)
         if user is not None:
             login_user(request, user)
-            return redirect('home')  # Redirect to home or any desired page after login
+            return redirect('home')
         else:
             messages.error(request, 'Invalid email or password.')
-            return redirect('login')  # Redirect back to login page with error message
+            return redirect('login')
     
-    # Render the login form initially
     return render(request, 'login.html')
 
-
 def logout_view(request):
-    logout(request)
+    logout_user(request)
     messages.success(request, "You have been logged out.")
     return redirect('login')
-
-
-
-
-
-
