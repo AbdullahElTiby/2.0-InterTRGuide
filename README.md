@@ -18,6 +18,12 @@ cd intertrguide
 then hit enter
 
 Then type :
+py manage.py makemigrations
+
+Then type :
+py manage.py migrate
+
+Then type :
 py manage.py runserver
 
 Done !!
