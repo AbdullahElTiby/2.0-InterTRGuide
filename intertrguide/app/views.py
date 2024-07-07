@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login as login_user, logout as logout_user
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib import messages
-from .models import CustomUser
+from .models import CustomUser,Category,Place,Description
 
 def home(request):
     return render(request, 'index.html')
@@ -77,3 +77,32 @@ def logout_view(request):
 
 def settings(request):
     return render(request, 'settings_page.html')
+
+def tr_in_blocks(request):
+    categorys = Category.objects.all()
+    places = Place.objects.all()
+    return render(request, 'tr_in_blocks.html',
+    {
+     'categorys':categorys,
+     'places':places,
+     
+     })
+    
+def category_detail(request, pk):
+    category = get_object_or_404(Category, pk=pk)
+    places = Place.objects.filter(category=category)
+    context = {
+        'category': category,
+        'places': places,
+    }
+    return render(request, 'category_detail.html', context)
+
+def place_detail(request, pk):
+    place = get_object_or_404(Place, pk=pk)
+    descriptions = Description.objects.filter(place=place)
+    
+    context = {
+        'place': place,
+        'descriptions': descriptions,
+    }
+    return render(request, 'place_detail.html', context)

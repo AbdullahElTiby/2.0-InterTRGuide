@@ -12,5 +12,8 @@ urlpatterns = [
     path('login', views.login, name='login'),
     path('logout/', logout_view, name='logout'),
     path('settings/', views.settings, name='settings'),
+    path('tr_in_blocks/', views.tr_in_blocks, name='tr_in_blocks'),
+    path('category/<int:pk>/', views.category_detail, name='category_detail'),
+    path('place/<int:pk>/', views.place_detail, name='place_detail'),
     
 ]
