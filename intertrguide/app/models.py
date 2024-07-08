@@ -1,5 +1,24 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from PIL import Image
+from django.core.files.base import ContentFile
+from io import BytesIO
+
+
+def resize_image(image, size=(1600, 900)):
+    img = Image.open(image)
+
+    # Ensure the image has a format
+    if img.mode in ("RGBA", "P"):
+        img = img.convert("RGB")
+
+    img = img.resize(size, Image.Resampling.LANCZOS)
+
+    thumb_io = BytesIO()
+    img.save(thumb_io, format='JPEG', quality=85)  # Default format set to JPEG
+
+    new_image = ContentFile(thumb_io.getvalue(), name=image.name)
+    return new_image
 
 class CustomUser(AbstractUser):
     name = models.CharField(max_length=100, blank=True)
@@ -18,6 +37,11 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def save(self, *args, **kwargs):
+        if self.image:
+            self.image = resize_image(self.image)
+        super(Category, self).save(*args, **kwargs)
 
 class Place(models.Model):
     name = models.CharField(max_length=100)
@@ -26,6 +50,11 @@ class Place(models.Model):
     def __str__(self):
         return self.name
     
+    def save(self, *args, **kwargs):
+        if self.image:
+            self.image = resize_image(self.image)
+        super(Place, self).save(*args, **kwargs)
+    
     
 class Description(models.Model):
     place = models.ForeignKey(Place, on_delete=models.CASCADE, related_name='descriptions')
@@ -33,6 +62,8 @@ class Description(models.Model):
     text = models.TextField()
     def __str__(self):
         return self.place.name
+    
+
     
 
 

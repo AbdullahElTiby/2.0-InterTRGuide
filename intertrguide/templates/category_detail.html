@@ -5,26 +5,29 @@
 {% endblock pagetitle %}
 
 {% block maincontent %}
-<section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-16">
-  <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
-    <div class="mb-4 flex items-center justify-between gap-4 md:mb-8">
-      <h2 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">{{category.name}} Category</h2>
-
-      <a href="#" title="" class="flex items-center text-base font-medium text-primary-700 hover:underline dark:text-primary-500">
-        See more categories
-        <svg class="ms-1 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
-        </svg>
-      </a>
+<section class="text-gray-600 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-wrap w-full mb-20">
+      <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">{{category.name}}</h1>
+        <div class="h-1 w-20 bg-red-500 rounded"></div>
+      </div>
+      <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">{{category.description}}</p>
     </div>
-    {% for place in places %}
-    <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-      <a href="{% url 'place_detail' place.id %}" class="flex items-center justify-center rounded-lg border border-gray-200 bg-white px-4 py-2 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 text-center">
-        <span class="text-sm font-medium text-gray-900 dark:text-white">{{ place.name }}</span>
-      </a>
+    <div class="flex flex-wrap -m-4 justify-center">
+      {% for place in places %}
+      <div class="xl:w-1/4 md:w-1/2 p-4">
+        <a href="{% url 'place_detail' place.id %}">
+        <div class="bg-gray-100 p-6 rounded-lg">
+          <img class="h-40 rounded w-full object-cover object-center mb-6" src="{{place.image.url}}" alt="content">
+          <h3 class="tracking-widest text-red-500 text-xs font-medium title-font">{{place.name}}</h3>
+          {% comment %} <h2 class="text-lg text-gray-900 font-medium title-font mb-4">{{place.suggestion}}</h2> {% endcomment %}
+          <p class="leading-relaxed text-base">{{place.description}}</p>
+        </div>
+        </a>
+      </div>
+      {% endfor %}
     </div>
-    
-    {% endfor %}
   </div>
 </section>
 

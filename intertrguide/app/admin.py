@@ -5,6 +5,11 @@ from .models import CustomUser,Category,Place,Description
 
 admin.site.register(CustomUser),
 admin.site.register(Place),
-admin.site.register(Category),
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['name', 'suggestion', 'description']
+
+admin.site.register(Category, CategoryAdmin)
 admin.site.register(Description),
+
+
 

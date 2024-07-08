@@ -8,43 +8,52 @@
 
 
 {% block maincontent %}
+{% load static %}
 <section class="text-gray-600 body-font">
     <div class="container mx-auto flex px-5 py-28 md:flex-row flex-col items-center">
       <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
         <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Your AI Tour Guide
           <br class="hidden lg:inline-block">in Turkey
         </h1>
-        <p class="mb-8 leading-relaxed">Copper mug try-hard pitchfork pour-over freegan heirloom neutra air plant cold-pressed tacos poke beard tote bag. Heirloom echo park mlkshk tote bag selvage hot chicken authentic tumeric truffaut hexagon try-hard chambray.</p>
+        <p class="mb-8 leading-relaxed">Discover Turkey like never before with our AI Tour Guide! Enjoy personalized tours, real-time recommendations, and in-depth insights on our site for an exceptional travel experience.</p>
         <div class="flex justify-center">
           <a href="{% url "about" %}"><button class="inline-flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg">Why us?</button></a>
+          {% if user.is_authenticated %}
+          <a href="{% url "aitg" %}"><button class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Start discovering</button></a>
+          {% else %}
           <a href="{% url "signup" %}"><button class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Sign up</button></a>
+          {% endif %}
 
 
         </div>
    
+        {% if user.is_authenticated %}
+        {% else %}
         <p class="text-gray-500 text-sm mt-2 md:text-left text-center">Already have account? <a href="{% url "login" %}">login!</a></p>
+
+        {% endif %}
       </div>
       <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-        <img class="object-cover object-center rounded" alt="hero" src="https://dummyimage.com/720x600">
+        <img class="object-cover object-center rounded-lg" alt="hero" src="{% static 'app/robotic_hand.jpeg' %}">
       </div>
     </div>
 
     <section class="text-gray-600 body-font">
       <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
         <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
-          <img class="object-cover object-center rounded" alt="hero" src="https://dummyimage.com/720x600">
+          <img class="object-cover object-center rounded" alt="hero" src="{% static "app/Download_the_app.jpeg" %}">
         </div>
         <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-          <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Knausgaard typewriter readymade marfa</h1>
-          <p class="mb-8 leading-relaxed">Chillwave portland ugh, knausgaard fam polaroid iPhone. Man braid swag typewriter affogato, hella selvage wolf narwhal dreamcatcher.</p>
+          <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Enhance Your Experience - Download Our App Now!</h1>
+          <p class="mb-8 leading-relaxed">Get the best out of our services with our mobile app. Enjoy seamless functionality and exclusive features right at your fingertips. Download now for a superior experience on your phone.</p>
           <div class="flex w-full md:justify-start justify-center items-end">
-            <div class="relative mr-4 lg:w-full xl:w-1/2 w-2/4">
+            {% comment %} <div class="relative mr-4 lg:w-full xl:w-1/2 w-2/4">
               <label for="hero-field" class="leading-7 text-sm text-gray-600">Placeholder</label>
               <input type="text" id="hero-field" name="hero-field" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:ring-2 focus:ring-red-200 focus:bg-transparent focus:border-red-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-            </div>
-            <button class="inline-flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg">Button</button>
+            </div> {% endcomment %}
+            {% comment %} <button class="inline-flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg">Button</button> {% endcomment %}
           </div>
-          <p class="text-sm mt-2 text-gray-500 mb-8 w-full">Neutra shabby chic ramps, viral fixie.</p>
+          {% comment %} <p class="text-sm mt-2 text-gray-500 mb-8 w-full">Neutra shabby chic ramps, viral fixie.</p> {% endcomment %}
           <div class="flex lg:flex-row md:flex-col">
             <button class="bg-gray-100 inline-flex py-3 px-5 rounded-lg items-center hover:bg-gray-200 focus:outline-none">
               <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 512 512">
