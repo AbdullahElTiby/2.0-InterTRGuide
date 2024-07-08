@@ -2,10 +2,12 @@ from django.contrib.auth import authenticate, login as login_user, logout as log
 from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib import messages
 from .models import CustomUser,Category,Place,Description
+from django.contrib.auth.decorators import login_required
 
 def home(request):
     return render(request, 'index.html')
 
+@login_required(login_url='login')
 def aitg(request):
     return render(request, 'aitg.html')
 

@@ -4,12 +4,12 @@ from .views import logout_view
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('aitg', views.aitg, name='aitg'),
-    path('pricing', views.pricing, name='pricing'),
-    path('about', views.about, name='about'),
-    path('contact', views.contact, name='contact'),
-    path('signup', views.signup, name='signup'),
-    path('login', views.login, name='login'),
+    path('aitg/', views.aitg, name='aitg'),
+    path('pricing/', views.pricing, name='pricing'),
+    path('about/', views.about, name='about'),
+    path('contact/', views.contact, name='contact'),
+    path('signup/', views.signup, name='signup'),
+    path('login/', views.login, name='login'),
     path('logout/', logout_view, name='logout'),
     path('settings/', views.settings, name='settings'),
     path('tr_in_blocks/', views.tr_in_blocks, name='tr_in_blocks'),
