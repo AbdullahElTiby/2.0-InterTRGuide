@@ -77,6 +77,7 @@ def logout_view(request):
     messages.success(request, "You have been logged out.")
     return redirect('login')
 
+@login_required(login_url='login')
 def settings(request):
     return render(request, 'settings_page.html')
 
@@ -108,3 +109,45 @@ def place_detail(request, pk):
         'descriptions': descriptions,
     }
     return render(request, 'place_detail.html', context)
+
+@login_required(login_url='login')
+def delete_profile_picture(request):
+    if request.method == 'POST':
+        user = request.user  # Assuming you're using Django's built-in User model
+        
+        if user.image:  # Check if the image field is not empty
+            user.image.delete()  # Delete the image file
+            user.image = 'default.png'  # Set the image field to default.png
+            user.save()
+            messages.success(request, 'Profile picture deleted successfully.')
+        else:
+            messages.info(request, 'No profile picture to delete.')
+
+        return redirect('settings')  # Redirect to the settings page or wherever you want
+
+    # Handle GET requests or other cases
+    return redirect('settings')
+
+@login_required(login_url='login')
+def change_profile_picture(request):
+    if request.method == 'POST':
+        user = request.user  # Assuming you're using Django's built-in User model
+        new_image = request.FILES.get('new_image')  # Assuming the file input name is 'new_image'
+
+        # Check if a new image was uploaded
+        if new_image:
+            # Delete the current image if it exists
+            if user.image:
+                user.image.delete()
+
+            # Save the new image
+            user.image = new_image
+            user.save()
+            messages.success(request, 'Profile picture updated successfully.')
+        else:
+            messages.error(request, 'No image selected.')
+
+        return redirect('settings')  # Redirect to the settings page or wherever you want
+
+    # Handle GET requests or other cases
+    return redirect('settings')  # Redirect to the settings page if not a POST request

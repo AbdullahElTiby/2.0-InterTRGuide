@@ -53,14 +53,19 @@
                             alt="Bordered avatar">
 
                         <div class="flex flex-col space-y-5 sm:ml-8">
-                            <button type="button"
-                                class="py-3.5 px-7 text-base font-medium text-red-100 focus:outline-none bg-[#202142] rounded-lg border border-red-200 hover:bg-red-900 focus:z-10 focus:ring-4 focus:ring-red-200 ">
-                                Change picture
-                            </button>
-                            <button type="button"
+                            <form action="{% url 'change_profile_picture' %}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <input type="file" name="new_image" accept="image/*" class="py-2.5 px-4 text-sm font-medium text-red-100 focus:outline-none bg-[#202142] rounded-lg border border-red-200 hover:bg-red-900 focus:z-10 focus:ring-4 focus:ring-red-200">                                <button type="submit" class="py-3.5 px-7 text-base font-medium text-red-900 focus:outline-none bg-white rounded-lg border border-red-200 hover:bg-red-100 hover:text-[#202142] focus:z-10 focus:ring-4 focus:ring-red-200 ">
+                                    Change picture
+                                </button>
+                            </form>
+                            <form action="{% url 'delete_profile_picture' %}" method="post">
+                                {% csrf_token %}
+                            <button type="submit"
                                 class="py-3.5 px-7 text-base font-medium text-red-900 focus:outline-none bg-white rounded-lg border border-red-200 hover:bg-red-100 hover:text-[#202142] focus:z-10 focus:ring-4 focus:ring-red-200 ">
                                 Delete picture
                             </button>
+                            </form>
                         </div>
                     </div>
 

@@ -15,5 +15,7 @@ urlpatterns = [
     path('tr_in_blocks/', views.tr_in_blocks, name='tr_in_blocks'),
     path('category/<int:pk>/', views.category_detail, name='category_detail'),
     path('place/<int:pk>/', views.place_detail, name='place_detail'),
+    path('delete-profile-picture/', views.delete_profile_picture, name='delete_profile_picture'),
+    path('change-profile-picture/', views.change_profile_picture, name='change_profile_picture'),
     
 ]
