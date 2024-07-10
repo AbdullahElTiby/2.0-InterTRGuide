@@ -116,8 +116,8 @@ def delete_profile_picture(request):
         user = request.user  # Assuming you're using Django's built-in User model
         
         if user.image:  # Check if the image field is not empty
-            user.image.delete()  # Delete the image file
-            user.image = 'default.png'  # Set the image field to default.png
+            # user.image.delete()  # Delete the image file
+            user.image = 'profile_pics/default.png'  # Set the image field to default.png
             user.save()
             messages.success(request, 'Profile picture deleted successfully.')
         else:
@@ -138,10 +138,9 @@ def change_profile_picture(request):
         if new_image:
             # Delete the current image if it exists
             if user.image:
-                user.image.delete()
+                # user.image.delete()
 
-            # Save the new image
-            user.image = new_image
+                user.image = new_image
             user.save()
             messages.success(request, 'Profile picture updated successfully.')
         else:

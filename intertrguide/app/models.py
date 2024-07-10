@@ -22,7 +22,7 @@ def resize_image(image, size=(1600, 900)):
 
 class CustomUser(AbstractUser):
     name = models.CharField(max_length=100, blank=True)
-    image = models.ImageField(upload_to='profile_pics', default='default.png')
+    image = models.ImageField(upload_to='profile_pics', default='profile_pics/default.png')
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=128, default='defaultpassword')
 
