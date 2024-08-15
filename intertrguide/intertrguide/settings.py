@@ -86,23 +86,17 @@ WSGI_APPLICATION = 'intertrguide.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'intertrguide_db',
+        'USER': 'db', 
+        'PASSWORD': 'Abd@12345',
+        'HOST': '127.0.0.1',  # Set to 'localhost' if the database is on the same machine
+        'PORT': '3306',  # Default MySQL port
     }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'mydatabase',
-#         'USER': 'abdullah',
-#         'PASSWORD': 'pass123',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
 
 
 
