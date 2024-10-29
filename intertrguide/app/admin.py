@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CustomUser,Category,Place,Description
+from .models import CustomUser,Category,Place,Description,Audio
 
 # Register your models here.
 
@@ -10,6 +10,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Description),
+admin.site.register(Audio),
 
 
 

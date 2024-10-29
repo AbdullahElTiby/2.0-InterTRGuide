@@ -57,13 +57,21 @@ class Place(models.Model):
     
     
 class Description(models.Model):
+    name = models.CharField(max_length=100,null=True)
     place = models.ForeignKey(Place, on_delete=models.CASCADE, related_name='descriptions')
     descriptionheader = models.TextField(default='Description')
     text = models.TextField()
     def __str__(self):
-        return self.place.name
+        return self.name
     
-
+    
+class Audio(models.Model):
+    name = models.CharField(max_length=100,null=True)
+    place = models.ForeignKey(Place, on_delete=models.CASCADE, related_name='audios')
+    description = models.ForeignKey(Description, on_delete=models.CASCADE, related_name='audios')
+    audio = models.FileField(upload_to='audio_files', blank=True, null=True)
+    def __str__(self):
+        return self.name
     
 
 
