@@ -156,3 +156,13 @@ AUTH_USER_MODEL = 'app.CustomUser'
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' unComment this on production
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # Comment this on production
+# EMAIL_HOST = 'smtp.office365.com' # unComment this on production
+# EMAIL_PORT = 587 # unComment this on production
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'tibyz._@outlook.com'
+EMAIL_HOST_PASSWORD = 'Abd@123123'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+

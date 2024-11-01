@@ -1,8 +1,14 @@
+from django.conf import settings
 from django.contrib.auth import authenticate, login as login_user, logout as logout_user
 from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib import messages
 from .models import CustomUser,Category,Place,Description
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
+import logging
+
+
+
 
 def home(request):
     return render(request, 'index.html')
@@ -150,3 +156,28 @@ def change_profile_picture(request):
 
     # Handle GET requests or other cases
     return redirect('settings')  # Redirect to the settings page if not a POST request
+
+
+def contact_view(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+
+        subject = f"New Message from {name}"
+        email_message = f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}"
+
+        try:
+            send_mail(
+                subject,
+                email_message,
+                getattr(settings, 'DEFAULT_FROM_EMAIL', 'default@example.com'),  # Use getattr for safety
+                ['tibyz._@outlook.com'],
+            )
+            messages.success(request, "Thank you! Your message has been sent.")
+            return redirect('contact')
+        except Exception as e:
+            logging.error(f"Email sending failed: {e}")  # Log specific error
+            messages.error(request, "An error occurred while sending your message. Please try again later.")
+
+    return render(request, 'contact.html')
