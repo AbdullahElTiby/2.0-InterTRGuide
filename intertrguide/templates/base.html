@@ -28,7 +28,7 @@
 
 	{% block stylingInHead %}{% endblock stylingInHead %}
 </style>
-	<link rel="icon" href="{% static 'app/icon png.png' %}" type="image/x-icon">
+	<link rel="icon" href="{{ MEDIA_URL }}{% static 'app/icon png.png' %}" type="image/x-icon">
 	<style>
 			/* Custom button styles */
 			#start-button {
@@ -154,9 +154,9 @@
 		<button type="button" class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
 		  <span class="sr-only">Open user menu</span>
 		  {% if user.is_authenticated %}
-		  <img class="w-8 h-8 rounded-full" src="{{ user.image.url }}" alt="">
+		  <img class="w-8 h-8 rounded-full" src="{{ MEDIA_URL }}{{ user.image.url }}" alt="">
 		  {% else %}
-		  <img class="w-8 h-8 rounded-full" src="{% static "app/default.png" %}" alt="">
+		  <img class="w-8 h-8 rounded-full" src="{{ MEDIA_URL }}{% static "app/default.png" %}" alt="">
 		  {% endif %}
 		</button>
 		<!-- Dropdown menu -->
