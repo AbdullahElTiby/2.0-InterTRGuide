@@ -133,7 +133,7 @@ USE_TZ = True
 # settings.py
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles/app'
+STATIC_ROOT = BASE_DIR / 'staticfiles/'
 
 
 
